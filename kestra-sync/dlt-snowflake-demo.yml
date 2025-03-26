@@ -9,7 +9,7 @@ tasks:
       include:
         - main.py
     beforeCommands:
-      - pip install requests kestra dlt[duckdb,sql-database,snowflake,chess]>=1.7.0
+      - pip install requests kestra dlt[snowflake]>=1.7.0
     commands:
       - python dlt/dlt-chess-snowflake.py
 
