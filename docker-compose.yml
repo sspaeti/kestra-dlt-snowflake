@@ -35,7 +35,7 @@ services:
       - /tmp/kestra-wd:/tmp/kestra-wd
       - /Users/sspaeti/Documents/work/kestra/kestra-dlt-snowflake/kestra-sync:/kestra-sync
     env_file:
-        - .env
+        - .env_encoded
     environment:
       KESTRA_CONFIGURATION: |
         datasources:
@@ -45,6 +45,8 @@ services:
             username: kestra
             password: k3str4
         kestra:
+          tutorialFlows:
+            enabled: false
           server:
             basicAuth:
               enabled: false

@@ -1,4 +1,5 @@
 .env
+.env_encoded
 .venv
 .DS_STORE
 *.pyc

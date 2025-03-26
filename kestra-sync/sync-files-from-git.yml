@@ -1,0 +1,17 @@
+id: sync_files_from_git
+namespace: system
+
+tasks:
+  - id: sync_files
+    type: io.kestra.plugin.git.SyncNamespaceFiles
+    username: sspaeti
+    password: "{{ secret('GITHUB_ACCESS_TOKEN') }}"
+    url: https://github.com/sspaeti/kestra-dlt-snowflake
+    branch: main
+    namespace: demo
+    gitDirectory: scripts
+
+triggers:
+  - id: every_full_hour
+    type: io.kestra.plugin.core.trigger.Schedule
+    cron: "* 0 * * *"
