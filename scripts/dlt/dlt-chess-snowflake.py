@@ -1,6 +1,7 @@
 import dlt
-from chess import source
+from dlt.chess import source
 from kestra import Kestra
+import os
 
 DESTINATION__SNOWFLAKE_PASSWORD = os.getenv("SECRET_DESTINATION__SNOWFLAKE_PASSWORT")
 DESTINATION__SNOWFLAKE_HOST = os.getenv("SECRET_DESTINATION__SNOWFLAKE_HOST")
