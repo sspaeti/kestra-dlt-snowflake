@@ -1,0 +1,16 @@
+id: dlt-chess-snowflake
+namespace: demo
+
+tasks:
+  - id: python
+    type: io.kestra.plugin.scripts.python.Commands
+    namespaceFiles:
+      enabled: true
+      include:
+        - main.py
+    beforeCommands:
+      - pip install requests kestra
+    commands:
+      - python dlt/dlt-chess-snowflake.py
+
+
