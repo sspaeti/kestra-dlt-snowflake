@@ -9,7 +9,7 @@ tasks:
       include:
         - main.py
     beforeCommands:
-      - uv pip install kestra dlt[snowflake]>=1.7.0 --system
+      - uv pip install kestra "dlt" --system
     commands:
       - python dlt/dlt-chess-snowflake.py
 
