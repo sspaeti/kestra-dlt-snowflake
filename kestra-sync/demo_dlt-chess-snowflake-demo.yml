@@ -4,7 +4,7 @@ namespace: demo
 tasks:
   - id: sync_files
     type: io.kestra.plugin.git.SyncNamespaceFiles
-    disabled: true # already synced files
+    #disabled: true # already synced files
     username: sspaeti
     password: "{{ secret('GITHUB_ACCESS_TOKEN') }}"
     url: https://github.com/sspaeti/kestra-dlt-snowflake/
