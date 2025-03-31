@@ -3,6 +3,13 @@ from chess import source
 from kestra import Kestra
 import os
 
+
+print("Script starting")
+DESTINATION__SNOWFLAKE_PASSWORD = os.getenv("SECRET_DESTINATION__SNOWFLAKE_PASSWORT")
+DESTINATION__SNOWFLAKE_HOST = os.getenv("DESTINATION__SNOWFLAKE_HOST")
+print("------------------")
+print(f"##### DESTINATION__SNOWFLAKE_HOST: {DESTINATION__SNOWFLAKE_HOST}")
+
 # Function to decode base64-encoded environment variables
 def get_decoded_env(env_name):
     encoded_value = os.environ.get(env_name)
@@ -15,12 +22,6 @@ def get_decoded_env(env_name):
             print(f"Error decoding {env_name}: {e}")
             return None
     return None
-
-print("Script starting")
-DESTINATION__SNOWFLAKE_PASSWORD = os.getenv("SECRET_DESTINATION__SNOWFLAKE_PASSWORT")
-DESTINATION__SNOWFLAKE_HOST = os.getenv("DESTINATION__SNOWFLAKE_HOST")
-print("------------------")
-print(f"##### DESTINATION__SNOWFLAKE_HOST: {DESTINATION__SNOWFLAKE_HOST}")
 print(f"##### DESTINATION__SNOWFLAKE_HOST: {get_decoded_env(SECRET_DESTINATION__SNOWFLAKE_HOST)}")
 
 print("Credentials start")
