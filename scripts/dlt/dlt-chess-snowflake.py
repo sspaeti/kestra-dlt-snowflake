@@ -6,11 +6,11 @@ import os
 DESTINATION__SNOWFLAKE_PASSWORD = os.getenv("SECRET_DESTINATION__SNOWFLAKE_PASSWORT")
 DESTINATION__SNOWFLAKE_HOST = os.getenv("SECRET_DESTINATION__SNOWFLAKE_HOST")
 
-print("###############################").
-print(f"###DESTINATION__SNOWFLAKE_HOST: {DESTINATION__SNOWFLAKE_HOST}")
+print("###############################")
+print(f"##### DESTINATION__SNOWFLAKE_HOST: {DESTINATION__SNOWFLAKE_HOST}")
 
 credentials = {
-    "host": DESTINATION_._SNOWFLAKE_HOST,
+    "host": DESTINATION__SNOWFLAKE_HOST,
     "database": "dlt_data",
     "username": "loader",
     "password": DESTINATION__SNOWFLAKE_PASSWORD,
