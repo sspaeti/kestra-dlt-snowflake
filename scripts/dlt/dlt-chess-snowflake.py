@@ -22,7 +22,7 @@ DESTINATION__SNOWFLAKE_HOST = os.getenv("DESTINATION__SNOWFLAKE_HOST")
 print("------------------")
 print(f"##### DESTINATION__SNOWFLAKE_HOST: {DESTINATION__SNOWFLAKE_HOST}")
 
-print(f"##### DESTINATION__SNOWFLAKE_HOST: {get_decoded_env(SECRET_DESTINATION__SNOWFLAKE_HOST}")
+print(f"##### DESTINATION__SNOWFLAKE_HOST: {get_decoded_env(SECRET_DESTINATION__SNOWFLAKE_HOST)}")
 
 print("Credentials start")
 credentials = {
