@@ -19,6 +19,7 @@ credentials = {
     "warehouse": "COMPUTE_WH",
     "role": "DLT_LOADER_ROLE",
 }
+print(f"credentials: {credentials}")
 
 snow_ = dlt.destinations.snowflake(credentials=credentials)
 
@@ -40,9 +41,7 @@ def load_players_games_example(start_month: str, end_month: str) -> None:
     )
     # load the "players_games" and "players_profiles" out of all the possible resources
     info = pipeline.run(data.with_resources("players_games", "players_profiles"))
-
-    Kestra.outputs({'status' , info})
-    # print(info)
+    print(info)
 
 
 def load_players_games_example(start_month: str, end_month: str) -> None:
@@ -62,9 +61,19 @@ def load_players_games_example(start_month: str, end_month: str) -> None:
     )
     # load the "players_games" and "players_profiles" out of all the possible resources
     info = pipeline.run(data.with_resources("players_games", "players_profiles"))
-    # print(info)
-    Kestra.outputs({'status' , info})
+    print(info)
 
+def load_players_online_status() -> None:
+    """Constructs a pipeline that will append online status of selected players"""
+
+    pipeline = dlt.pipeline(
+        pipeline_name="chess_pipeline",
+        destination='snowflake',
+        dataset_name="chess_players_games_data",
+    )
+    data = source(["magnuscarlsen", "vincentkeymer", "dommarajugukesh", "rpragchess"])
+    info = pipeline.run(data.with_resources("players_online_status"))
+    print(info)
 
 def load_players_games_incrementally() -> None:
     """Pipeline will not load the same game archive twice"""
