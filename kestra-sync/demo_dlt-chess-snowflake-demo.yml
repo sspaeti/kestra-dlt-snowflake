@@ -9,7 +9,9 @@ tasks:
       include:
         - main.py
     beforeCommands:
-      - uv pip install kestra "dlt" --system
+      - uv venv
+      - uv pip install kestra "dlt"
+      - . .venv/bin/activate
     commands:
       - python dlt/dlt-chess-snowflake.py
 
