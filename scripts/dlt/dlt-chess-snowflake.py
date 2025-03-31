@@ -4,13 +4,10 @@ from kestra import Kestra
 import os
 
 
-print("Script starting")
 DESTINATION__SNOWFLAKE_PASSWORD = os.getenv("DESTINATION__SNOWFLAKE_PASSWORD")
 DESTINATION__SNOWFLAKE_HOST = os.getenv("DESTINATION__SNOWFLAKE_HOST")
-print(f"##### DESTINATION__SNOWFLAKE_HOST: {DESTINATION__SNOWFLAKE_HOST}")
 
 
-print("Credentials start")
 credentials = {
     "host": DESTINATION__SNOWFLAKE_HOST,
     "database": "dlt_data",
@@ -19,7 +16,6 @@ credentials = {
     "warehouse": "COMPUTE_WH",
     "role": "DLT_LOADER_ROLE",
 }
-print(f"credentials: {credentials}")
 
 snow_ = dlt.destinations.snowflake(credentials=credentials)
 
