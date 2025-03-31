@@ -2,6 +2,16 @@ id: dlt-chess-snowflake-demo
 namespace: demo
 
 tasks:
+  - id: sync_files
+    type: io.kestra.plugin.git.SyncNamespaceFiles
+    username: sspaeti
+    password: "{{ secret('GITHUB_ACCESS_TOKEN') }}"
+    url: https://github.com/sspaeti/kestra-dlt-snowflake/
+    branch: main
+    namespace: "{{ flow.namespace }}"
+    gitDirectory: _files
+    dryRun: true
+
   - id: python
     type: io.kestra.plugin.scripts.python.Commands
     namespaceFiles:
@@ -9,9 +19,11 @@ tasks:
       include:
         - main.py
     beforeCommands:
-      - uv venv
-      - uv pip install kestra "dlt"
-      - . .venv/bin/activate
+      - pip install requests dlt
+      - ls
+      - pwd
+    # script: |
+    #   print("hello")
     commands:
       - python dlt/dlt-chess-snowflake.py
 
