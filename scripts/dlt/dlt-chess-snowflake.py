@@ -1,5 +1,5 @@
 import dlt
-from dlt.chess import source
+from chess import source
 from kestra import Kestra
 import os
 
