@@ -23,9 +23,7 @@ tasks:
       DESTINATION__SNOWFLAKE_HOST: "{{ secret('DESTINATION__SNOWFLAKE_HOST') }}"
       DESTINATION__SNOWFLAKE_PASSWORD: "{{ secret('DESTINATION__SNOWFLAKE_PASSWORD') }}"
     beforeCommands:
-      - pip install dlt[snowflake]
-      - ls dlt
-      - pwd
+      - pip install dlt[snowflake]  2> /dev/null
       - export DESTINATION__SNOWFLAKE_HOST={{ secret('DESTINATION__SNOWFLAKE_HOST') }}
       - export DESTINATION__SNOWFLAKE_PASSWORD={{ secret('DESTINATION__SNOWFLAKE_PASSWORD') }}
     # script: |
