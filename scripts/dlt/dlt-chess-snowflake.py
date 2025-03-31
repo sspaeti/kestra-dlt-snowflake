@@ -3,11 +3,26 @@ from chess import source
 from kestra import Kestra
 import os
 
+# Function to decode base64-encoded environment variables
+def get_decoded_env(env_name):
+    encoded_value = os.environ.get(env_name)
+    if encoded_value:
+        try:
+            # Decode the base64 value
+            decoded_value = base64.b64decode(encoded_value).decode('utf-8')
+            return decoded_value
+        except Exception as e:
+            print(f"Error decoding {env_name}: {e}")
+            return None
+    return None
+
 print("Script starting")
 DESTINATION__SNOWFLAKE_PASSWORD = os.getenv("SECRET_DESTINATION__SNOWFLAKE_PASSWORT")
-DESTINATION__SNOWFLAKE_HOST = os.getenv("SECRET_DESTINATION__SNOWFLAKE_HOST")
+DESTINATION__SNOWFLAKE_HOST = os.getenv("DESTINATION__SNOWFLAKE_HOST")
 print("------------------")
 print(f"##### DESTINATION__SNOWFLAKE_HOST: {DESTINATION__SNOWFLAKE_HOST}")
+
+print(f"##### DESTINATION__SNOWFLAKE_HOST: {get_decoded_env(SECRET_DESTINATION__SNOWFLAKE_HOST}")
 
 print("Credentials start")
 credentials = {
@@ -18,6 +33,8 @@ credentials = {
     "warehouse": "COMPUTE_WH",
     "role": "DLT_LOADER_ROLE",
 }
+
+kestra.
 snow_ = dlt.destinations.snowflake(credentials=credentials)
 
 
