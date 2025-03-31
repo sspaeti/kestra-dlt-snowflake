@@ -17,7 +17,7 @@ tasks:
     namespaceFiles:
       enabled: true
     beforeCommands:
-      - pip install requests
+      - pip install dlt
       - ls dlt
       - pwd
     # script: |
