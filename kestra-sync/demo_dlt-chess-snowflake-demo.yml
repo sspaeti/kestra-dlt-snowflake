@@ -16,11 +16,9 @@ tasks:
     type: io.kestra.plugin.scripts.python.Commands
     namespaceFiles:
       enabled: true
-      include:
-        - main.py
     beforeCommands:
-      - pip install requests dlt
-      - ls
+      - pip install requests
+      - ls dlt
       - pwd
     # script: |
     #   print("hello")
