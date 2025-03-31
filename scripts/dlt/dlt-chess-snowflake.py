@@ -6,10 +6,10 @@ import os
 print("Script starting")
 DESTINATION__SNOWFLAKE_PASSWORD = os.getenv("SECRET_DESTINATION__SNOWFLAKE_PASSWORT")
 DESTINATION__SNOWFLAKE_HOST = os.getenv("SECRET_DESTINATION__SNOWFLAKE_HOST")
-
-print("###############################")
+print("------------------")
 print(f"##### DESTINATION__SNOWFLAKE_HOST: {DESTINATION__SNOWFLAKE_HOST}")
 
+print("Credentials start")
 credentials = {
     "host": DESTINATION__SNOWFLAKE_HOST,
     "database": "dlt_data",

@@ -23,6 +23,10 @@ tasks:
       - pip install dlt[snowflake]
       - ls dlt
       - pwd
+    env:
+      BIGQUERY_PROJECT_ID: "{{ secret('DESTINATION__SNOWFLAKE_CREDENTIALS') }}"
+      DESTINATION__SNOWFLAKE_PASSWORT: "{{ secret('DESTINATION__SNOWFLAKE_PASSWORT') }}"
+      DESTINATION__SNOWFLAKE_HOST: "{{ secret('DESTINATION__SNOWFLAKE_HOST') }}"
     # script: |
     #   print("hello")
     commands:
