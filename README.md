@@ -1,5 +1,4 @@
-# Kestra example
-
+# Kestra Snowflake dlt example
 
 
 ## Configure ENV variable
