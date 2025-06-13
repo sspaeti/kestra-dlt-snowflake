@@ -1,0 +1,43 @@
+id: dlt-chess-snowflake-demo
+namespace: demo
+
+tasks:
+  - id: sync_files
+    type: io.kestra.plugin.git.SyncNamespaceFiles
+    #disabled: true # already synced files
+    username: sspaeti
+    password: "{{ secret('GITHUB_ACCESS_TOKEN') }}"
+    url: https://github.com/sspaeti/kestra-dlt-snowflake/
+    branch: main
+    namespace: "{{ flow.namespace }}"
+    gitDirectory: _files
+    dryRun: true
+
+  - id: analyze_chess_data
+    type: io.kestra.plugin.openai.ChatCompletion
+    apiKey: "{{ secret('OPENAI_API_KEY') }}"
+    model: gpt-3.5-turbo
+    prompt: "Analyze the following chess data pipeline and provide insights on what it does and potential improvements: 'This pipeline extracts chess game data and loads it into Snowflake.'"
+    messages:
+      - role: system
+        content: "You are an AI assistant that specializes in data engineering and chess analytics."
+
+  - id: python
+    type: io.kestra.plugin.scripts.python.Commands
+    namespaceFiles:
+      enabled: true
+    taskRunner:
+      type: io.kestra.plugin.core.runner.Process
+    env:
+      DESTINATION__SNOWFLAKE_HOST: "{{ secret('DESTINATION__SNOWFLAKE_HOST') }}"
+      DESTINATION__SNOWFLAKE_PASSWORD: "{{ secret('DESTINATION__SNOWFLAKE_PASSWORD') }}"
+      OPENAI_ANALYSIS: "{{ outputs.analyze_chess_data.choices[0].message.content }}"
+    beforeCommands:
+      - pip install dlt[snowflake]  2> /dev/null
+      - export DESTINATION__SNOWFLAKE_HOST={{ secret('DESTINATION__SNOWFLAKE_HOST') }}
+      - export DESTINATION__SNOWFLAKE_PASSWORD={{ secret('DESTINATION__SNOWFLAKE_PASSWORD') }}
+    # script: |
+    #   print("hello")
+    commands:
+      - echo "OpenAI Analysis: $OPENAI_ANALYSIS" > openai_analysis.txt
+      - python dlt/dlt-chess-snowflake.py
